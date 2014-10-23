@@ -1,0 +1,94 @@
+﻿<UserControl x:Name="userControl" x:Class="Douban.LayerCollection.ControlPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="300">
+	<UserControl.Resources>
+		<Storyboard x:Key="ChangeStyle">
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="textBlock">
+				<SplineDoubleKeyFrame KeyTime="0:0:1.1" Value="1"/>
+				<SplineDoubleKeyFrame KeyTime="0:0:1.6" Value="0"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="btnMinus">
+				<SplineDoubleKeyFrame KeyTime="0:0:0.6" Value="1"/>
+				<SplineDoubleKeyFrame KeyTime="0:0:1.1" Value="0"/>
+			</DoubleAnimationUsingKeyFrames>
+			<ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="btnChangeStyle">
+				<SplineThicknessKeyFrame KeyTime="0:0:0.6" Value="0"/>
+				<SplineThicknessKeyFrame KeyTime="0:0:1.1" Value="0,0,30,0"/>
+				<SplineThicknessKeyFrame KeyTime="0:0:1.6" Value="0"/>
+			</ThicknessAnimationUsingKeyFrames>
+			<ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="btnMinus">
+				<SplineThicknessKeyFrame KeyTime="0:0:0.6" Value="0"/>
+				<SplineThicknessKeyFrame KeyTime="0:0:1.1" Value="0,0,-30,0"/>
+			</ThicknessAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="image">
+				<SplineDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="lLogo">
+				<SplineDoubleKeyFrame KeyTime="0:0:0.3" Value="0"/>
+			</DoubleAnimationUsingKeyFrames>
+		</Storyboard>
+		<Storyboard x:Key="RestoreStyle">
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="textBlock">
+				<SplineDoubleKeyFrame KeyTime="0:0:1.5" Value="0"/>
+				<SplineDoubleKeyFrame KeyTime="0:0:2" Value="1"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="btnMinus">
+				<SplineDoubleKeyFrame KeyTime="0:0:1.5" Value="0"/>
+				<SplineDoubleKeyFrame KeyTime="0:0:2" Value="1"/>
+			</DoubleAnimationUsingKeyFrames>
+			<ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="btnChangeStyle">
+				<SplineThicknessKeyFrame KeyTime="0:0:1" Value="0"/>
+				<SplineThicknessKeyFrame KeyTime="0:0:1.5" Value="0,0,30,0"/>
+				<SplineThicknessKeyFrame KeyTime="0:0:2" Value="0"/>
+			</ThicknessAnimationUsingKeyFrames>
+			<ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="btnMinus">
+				<SplineThicknessKeyFrame KeyTime="0:0:1.5" Value="0,0,-30,0"/>
+				<SplineThicknessKeyFrame KeyTime="0:0:2" Value="0"/>
+			</ThicknessAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="image">
+				<SplineDoubleKeyFrame KeyTime="0:0:2.5" Value="0"/>
+				<SplineDoubleKeyFrame KeyTime="0:0:3" Value="1"/>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="lLogo">
+				<SplineDoubleKeyFrame KeyTime="0:0:2.5" Value="0"/>
+				<SplineDoubleKeyFrame KeyTime="0:0:3" Value="0.5"/>
+			</DoubleAnimationUsingKeyFrames>
+		</Storyboard>
+	</UserControl.Resources>
+    <Grid>
+    	<Image HorizontalAlignment="Left" Height="20" Margin="10,10,5,5" Source="/Douban.ico" Stretch="Fill" VerticalAlignment="Top" Width="20">
+    		<Image.Effect>
+    			<DropShadowEffect Color="{Binding Foreground, Converter={StaticResource ColorReversaler}, ElementName=userControl}" ShadowDepth="0" Opacity="0.5" />
+    		</Image.Effect>
+    	</Image>
+		<Grid VerticalAlignment="Top" Margin="35,10,0,0">
+			<TextBlock x:Name="textBlock" FontSize="12"  >
+				<TextBlock.Effect>
+					<DropShadowEffect ShadowDepth="0" Color="{Binding Foreground, Converter={StaticResource ColorReversaler}, ElementName=userControl}" Opacity="0.5" />
+				</TextBlock.Effect>
+	    		<Run x:Name="rTitle" />
+				<Underline Cursor="Hand"><Run x:Name="rLogin" MouseDown="rLogin_MouseDown" /></Underline>
+			</TextBlock>
+		</Grid>
+    	<TextBlock x:Name="lLogo" Text="豆瓣电台" Margin="0,0,5,5" FontSize="14.667" HorizontalAlignment="Right" VerticalAlignment="Bottom" ToolTip="单击以访问豆瓣电台网站" Cursor="Hand" MouseDown="lLogo_MouseDown" Opacity="0.5" >
+    		<TextBlock.Effect>
+    			<DropShadowEffect ShadowDepth="0" Color="{Binding Foreground, Converter={StaticResource ColorReversaler}, ElementName=userControl}" Opacity="0.5" />
+    		</TextBlock.Effect>
+    	</TextBlock>
+		<Rectangle x:Name="image" Height="23.78" Margin="10,0,0,5" Stretch="Fill" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="210" Fill="{Binding Foreground, ElementName=userControl}">
+			<Rectangle.OpacityMask>
+				<ImageBrush ImageSource="\Image\Logo.png" Stretch="Uniform"/>
+			</Rectangle.OpacityMask>
+		</Rectangle>
+		<StackPanel HorizontalAlignment="Right" VerticalAlignment="Top" Orientation="Horizontal" Margin="0,0,3,0">
+			<Button x:Name="btnMenu" Height="20" Width="30" HorizontalAlignment="Right" Margin="0" Tag="Image\Menu.png" VerticalAlignment="Top" ToolTip="菜单" Style="{DynamicResource ControlBox}" Background="#FF1CA2D4" Visibility="Hidden" />
+            <Button x:Name="btnMinus" Height="20" Width="30" HorizontalAlignment="Right" Margin="0" Tag="Image\Minus.png" VerticalAlignment="Top" ToolTip="最小化" Style="{DynamicResource ControlBox}" Click="btnMinus_Click" Background="#FF1CA2D4" />
+            <Button x:Name="btnChangeStyle" Height="20" Width="30" HorizontalAlignment="Right" Margin="0" Tag="Image\ChangeStyle.png" VerticalAlignment="Top" ToolTip="更改模式" Style="{DynamicResource ControlBox}" Background="#FF1CA2D4" Click="btnChangeStyle_Click" />
+			<Button x:Name="btnClose" Height="20" Width="35" HorizontalAlignment="Right" Margin="0" Tag="Image\Close.png" VerticalAlignment="Top" ToolTip="关闭" Style="{DynamicResource ControlBox}" Click="btnClose_Click" Background="Red" />
+		</StackPanel>
+	</Grid>
+</UserControl>
